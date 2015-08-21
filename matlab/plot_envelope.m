@@ -1,0 +1,14 @@
+tt=-3:0.1:3; func1 = max(abs(tt)-1,0).^2;
+figure, plot(tt, func1, 'linewidth', 2);
+hold on;
+yl=ylim;
+plot([-1;-1;1;1],yl([2,1,1,2]),'m--','linewidth',2);
+grid on;
+set(gca,'fontsize',20,'xtick',-1:1);
+format_ticks(gca, {'-\lambda', '0', '\lambda'});
+set(gca,'xtick',-3:3,'yticklabel',[]);
+xlim([-3 3]);
+text(1,3,'\delta_\lambda(v)','FontSize',20,'Color','m');
+text(2,3,'Env[\delta_\lambda](v)','FontSize',20,'Color','b');
+xyaxis(xlim, ylim);
+axis off;

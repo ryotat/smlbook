@@ -1,0 +1,9 @@
+tt=-3:0.1:3;
+maj=@(x,x0)(x.^2/x0+x0)/2;
+xyaxis([-3 3],[-3 3]);
+h=plot([-3, 0, 3], [3, 0, 3],...
+       tt, maj(tt,0.2),...
+       tt, maj(tt,1), ...
+       tt, maj(tt,2), 'm-','linewidth', 2);
+ylim([-1 4]);
+axis off

@@ -31,15 +31,16 @@ d=ds;
 dims=l1_statdim(ks,d);
 delta=0.05;
 a=4*sqrt(log(4/delta));
-subplot(1,2,1);
 imagesc(ks, fracs*ds, errm)
 set(gca,'ydir','normal')
 colormap gray
 hold on;
-plot(ks, dims, 'm-', 'linewidth',2);
+h=plot(ks, dims, 'm-',...
+    ks, ks*log(d), 'c--', 'linewidth',2);
 set(gca,'fontsize',14);
 xlabel('Number of nonzeros');
 ylabel('Number of samples');
 colorbar;
-
+legend(h,'Statistical dimension','k*log(d)',...
+    'Location','NorthWest')
 

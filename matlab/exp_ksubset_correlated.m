@@ -5,7 +5,13 @@ k=10;
 ns=10:10:250;
 nte=1000;
 
-nrep=100; % nrep=1 means visualization
+% Set one to visualize weights (Fig. 3.5)
+visualize_weights = 0;
+
+% Number of replications (ignored if visualize_weights=1)
+nrep=100;
+
+
 sigma=1;
 
 methods={'l1','l2','largestk','2step','optimal'};
@@ -18,7 +24,7 @@ for ii=1:nrep
   C=v0*v0'+0.1*eye(k); C=C*k/trace(C);
   Xte=[randn(nte,k)*sqrtm(C), randn(nte,d-k)];
   yte=Xte*w0;
-  if nrep==1
+  if visualize_weights
     subplot(2,(length(methods)+1)/2,1);
     stem(w0(1:100));
     ylim([-1.5 1.5]);
@@ -43,7 +49,7 @@ for ii=1:nrep
         W=continuation(@(x0,lmd)[(Xk'*Xk+lmd*eye(k))\(Xk'*yy); zeros(d-k,1)],...
                        randn(d,1), lambdas);
        case 'l1'
-        W=continuation(@(x0,lmd)dalsql1(x0, X, yy, lmd),...
+        W=continuation(@(x0,lmd)dalsql1(x0, X, yy, lmd, 'display', 0),...
                        randn(d,1), lambdasl1*sqrt(n));
        case 'largestk'
         W=continuation(@(x0,lmd)(X'*X+lmd*eye(d))\(X'*yy),...
@@ -62,7 +68,7 @@ for ii=1:nrep
       [mm,ix]=min(eall);
       err(ii,jj,kk)=mm;
       memo(ii,jj,kk)=struct('eall',eall,'ix',ix);
-      if nrep==1
+      if visualize_weights
         % visualization
         subplot(2,(length(methods)+1)/2,kk+1);
         stem(W(1:100,ix));
@@ -74,17 +80,20 @@ for ii=1:nrep
     end
     fprintf('rep=%d n=%d: %s\n', ii, n, printvec(err(ii,jj,:)));
   end
-end
-
-if nrep>1
-figure, h=errorbar(ns'*ones(1,5), shiftdim(mean(err)), shiftdim(std(err))/sqrt(nrep));
-set(h,'linewidth',2);
-hold on; plot(xlim, 0.5*[1 1], '--','color',[.8 .8 .8])
-grid on;
-set(gca,'fontsize',14);
-legend('L1', 'L2', 'Largest-k', '2steps', 'Optimal');
-
-xlabel('Number of samples');
-ylabel('Normalized error');
-
+  if visualize_weights
+      break;
+  else
+      h=errorbar(ns'*ones(1,5), shiftdim(mean(err,1)), shiftdim(std(err,[],1))/sqrt(nrep));
+      set(h,'linewidth',2);
+      hold on; plot(xlim, 0.5*[1 1], '--','color',[.8 .8 .8])
+      grid on;
+      set(gca,'fontsize',14);
+      legend('L1', 'L2', 'Largest-k', '2steps', 'Optimal');
+      
+      xlabel('Number of samples');
+      ylabel('Normalized error');
+      set(gcf,'name',sprintf('nrep=%d', ii));
+      hold off;
+      drawnow;
+  end
 end

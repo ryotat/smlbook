@@ -16,7 +16,12 @@
 ![図3.4](./fig3.4.png)
 
 ### 相転移と統計的次元（4章）
-
+```matlab
+ exp_lininvl1
+ ```
+ 
+ ![図4.3(b)](./fig4.3b.png)
+ 
 ### lassoの統計的性能（5章）
 
 ### 最適化アルゴリズムの比較（6章）
@@ -25,4 +30,5 @@
 
 ### ロバスト主成分を用いた前景抽出（10章）
 
+1. [データ](http://perception.i2r.a-star.edu.sg/bk_model/bk_index.html)をダウンロード
 

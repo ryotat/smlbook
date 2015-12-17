@@ -12,7 +12,7 @@ end
 [n,d]=size(X);
 
 
-fprintf('Computing the Cholesky factorization...\n');
+% fprintf('Computing the Cholesky factorization...\n');
 R=chol(eta*X*X'+lambda*eye(n));
 
 alpha=zeros(n,1);

@@ -23,7 +23,15 @@
   ```
 4. 結果
  ![図3.4](./fig3.4.png)
+5. 係数ベクトルを可視化するには```exp_ksubset_correlated.m```の９行目を
+ 
+  ```matlab
+  visualize_weights = 1;
+  ```
+としてから実行して下さい．
 
+ ![図3.5](./fig3.5.png)
+ 
 ### 相転移と統計的次元（4章）
 ```matlab
  exp_lininvl1

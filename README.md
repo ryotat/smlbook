@@ -10,10 +10,19 @@
 ![図2.3](./fig2.3.png)
 
 ### 人工データ実験（3章）
-```matlab
- exp_ksubset_correlated
-```
-![図3.4](./fig3.4.png)
+1. はじめにスパース正則化のための[双対拡張ラグランジュ(DAL)法のツールボックス](https://github.com/ryotat/dal)をダウンロードして下さい.
+2. ツールボックスのパスを追加して下さい．
+
+  ```matlab
+  addpath /path/to/dal/matlab
+  ```
+3. 実行します．
+
+  ```matlab
+  exp_ksubset_correlated
+  ```
+4. 結果
+ ![図3.4](./fig3.4.png)
 
 ### 相転移と統計的次元（4章）
 ```matlab

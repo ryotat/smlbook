@@ -4,6 +4,11 @@ fracs=0.025:0.025:1;
 
 nrep=100;
 
+
+dims=l1_statdim(ks,ds);
+delta=0.05;
+a=4*sqrt(log(4/delta));
+
 for ii=1:nrep
   for jj=1:length(ds)
     d=ds(jj);
@@ -18,29 +23,26 @@ for ii=1:nrep
       fprintf('d=%d n=%d err=%s\n',d,n,printvec(err(ii,jj,kk,:)));
     end
   end
+  
+  errm=shiftdim(mean(err<1e-2,1)); 
+  imagesc(ks, fracs*ds, errm)
+  set(gca,'ydir','normal')
+  colormap gray
+  hold on;
+  h=plot(ks, dims, 'm-',...
+      ks, ks*log(ds), 'c--', 'linewidth',2);
+  set(gca,'fontsize',14);
+  xlabel('Number of nonzeros');
+  ylabel('Number of samples');
+  colorbar;
+  legend(h,'Statistical dimension','k*log(d)',...
+      'Location','NorthWest')
+  set(gcf,'name',sprintf('nsample=%d',ii));
+  drawnow;
 end
 
-errm=shiftdim(mean(err<1e-2)); 
 fracinf=[fracs inf];
 thr=zeros(length(ds),length(ks));
 for ii=1:length(ds)
   thr(ii,:)=fracinf(sum(shiftdim(errm(ii,:,:))<=0.5)+1);
 end
-
-d=ds;
-dims=l1_statdim(ks,d);
-delta=0.05;
-a=4*sqrt(log(4/delta));
-imagesc(ks, fracs*ds, errm)
-set(gca,'ydir','normal')
-colormap gray
-hold on;
-h=plot(ks, dims, 'm-',...
-    ks, ks*log(d), 'c--', 'linewidth',2);
-set(gca,'fontsize',14);
-xlabel('Number of nonzeros');
-ylabel('Number of samples');
-colorbar;
-legend(h,'Statistical dimension','k*log(d)',...
-    'Location','NorthWest')
-

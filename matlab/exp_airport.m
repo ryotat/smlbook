@@ -1,4 +1,4 @@
-datadir='airport/';
+datadir='hall/';
 files=dir([datadir, '*.bmp']);
 
 ind_tr=round(linspace(1,length(files),200));

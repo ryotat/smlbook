@@ -56,5 +56,6 @@
 
 ### ロバスト主成分を用いた前景抽出（10章）
 
-1. [データ](http://perception.i2r.a-star.edu.sg/bk_model/bk_index.html)をダウンロード
+1. データ (Hall of a business building) をシンガポール科学技術研究庁インフォコム研究所 (I2R) の[ページ](http://perception.i2r.a-star.edu.sg/bk_model/bk_index.html)からダウンロード
+2. hall.zipを展開
 

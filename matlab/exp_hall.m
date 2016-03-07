@@ -1,4 +1,4 @@
-datadir='airport/';
+datadir='datasets/hall/';
 files=dir([datadir, '*.bmp']);
 
 ind_tr=round(linspace(1,length(files),200));
@@ -13,6 +13,7 @@ end
 sz=size(B);
 ind_show=round(linspace(1,size(Y,2),8));
 
+figure('position',[50,500,1303,255])
 [S,L,A,fval,res, err]=rpca_admm(Y, 1e-6, sqrt(max(size(Y))), ind_show, sz);
 
 

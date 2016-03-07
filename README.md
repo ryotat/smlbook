@@ -72,5 +72,13 @@
 ### ロバスト主成分を用いた前景抽出（10章）
 
 1. データ (Hall of a business building) をシンガポール科学技術研究庁インフォコム研究所 (I2R) の[ページ](http://perception.i2r.a-star.edu.sg/bk_model/bk_index.html)からダウンロード
-2. hall.zipを展開
+2. `hall.zip`を展開し，`datasets/hall/`以下に置きます．
+3. 実行します．
+
+  ```matlab
+  exp_hall
+  ```
+4. 結果
+
+ ![図10.5](./fig10.5.png)
 
